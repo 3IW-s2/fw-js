@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  httpd:
+    image: httpd:2.4
+    ports:
+      - "80:80"
+    volumes:
+      - apache_conf:/usr/local/apache2/conf/
+      - ./www:/usr/local/apache2/htdocs/
+
+volumes:
+  apache_conf:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./apache/conf
+      o: bind
