@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "watch": "sass --no-source-map --no-charset --watch src/scss/style.scss www/public/css/style.css --style compressed"
+  }
+}
