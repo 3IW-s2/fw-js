@@ -25,3 +25,35 @@ ul li {
 button{
   border: none;
 }
+
+
+#page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  #page-container {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 576px) {
+  #page-container {
+    max-width: 576px;
+  }
+}
+
+@media (max-width: 375px) {
+  #page-container {
+    max-width: 375px;
+  }
+}
+
+@media (max-width: 320px) {
+  #page-container {
+    max-width: 320px;
+  }
+}

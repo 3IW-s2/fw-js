@@ -1,0 +1,16 @@
+.header{
+  font-size: 22px;
+  background: #1f1f1f;
+  padding: 14px;
+
+
+  .links{
+    display: flex;
+    justify-content: space-around;
+
+    .link{
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
