@@ -3,16 +3,21 @@ export default function generateStructure(structure) {
   if (structure.attributes) {
     for (let attrName in structure.attributes) {
       if (attrName.startsWith("data-")) {
-        element.dataset[attrName.replace("data-", "")] =
-          structure.attributes[attrName];
+        element.dataset[attrName.replace("data-", "")] = structure.attributes[attrName];
       } else if (attrName === "style") {
         Object.assign(element.style, structure.attributes[attrName]);
       } else element.setAttribute(attrName, structure.attributes[attrName]);
     }
   }
   if (structure.events) {
+    // console.log(structure.events);
     for (let eventName in structure.events) {
-      element.addEventListener(eventName, structure.events[eventName]);
+      // console.log(structure.events[eventName]);
+      if (Object.keys(structure.events[eventName]).length === 0) {
+        console.log("No handler for event " + eventName);
+        continue;
+      }
+      element.addEventListener(eventName, structure.events[eventName].handler, structure.events[eventName].options);
     }
   }
 
@@ -27,6 +32,15 @@ export default function generateStructure(structure) {
       element.appendChild(subChild);
     }
   }
-
   return element;
+}
+
+//create an id generator like 4avv4a5d
+export function generateId() {
+  const identifiers = Array.from(document.querySelectorAll("[data-identifier]")).map((element) => element.dataset.identifier);
+  const identifier = Math.random().toString(36).slice(2, 11);
+  if (identifiers.includes(identifier)) {
+    return generateId();
+  }
+  return identifier;
 }
