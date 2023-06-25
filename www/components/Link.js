@@ -1,19 +1,40 @@
-export function Link(title, link, onClick) {
-  const style = {
-    color: "black",
-    textDecoration: "none",
-  };
-  const events = {};
-  if (onClick) {
-    events.click = onClick;
+import Component from "./Component.js";
+
+export default class Link extends Component {
+
+  constructor(props) {
+    super(props);
   }
-  return {
-    type: "a",
-    attributes: {
-      href: link,
-      style: style,
-    },
-    events: events,
-    children: [title],
-  };
+
+  shouldUpdate(newProps) {
+    // Comparaison des nouvelles props avec les anciennes props pour déterminer si le composant doit être mis à jour
+    // Retourne true ou false en fonction du résultat
+  }
+
+  render() {
+    const {
+      title = "Lien",
+      link = {},
+      click = {}
+    } = this.props;
+
+    const style = {
+      // color: "black",
+      // textDecoration: "none",
+    };
+
+    return {
+      type: "a",
+      attributes: {
+        href: link,
+        style: style,
+        class: "link",
+        ...this.defaultAttributes,
+      },
+      events: {
+        click
+      },
+      children: [title],
+    };
+  }
 }

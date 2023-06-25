@@ -1,5 +1,5 @@
 import DomRenderer from "../core/DomRenderer.js";
-import { Link } from "./Link.js";
+import Link from "./Link.js";
 
 let routerBasePath;
 
@@ -28,13 +28,5 @@ export default function BrowserRouter(routes, rootElement, baseUrl = "") {
       DomRenderer(routes[pathname]()),
       rootElement.childNodes[0]
     );
-  });
-}
-
-export function BrowserLink(title, link) {
-  const realLink = routerBasePath + link;
-  return Link(title, realLink, (event) => {
-    event.preventDefault();
-    history.pushState({}, undefined, realLink);
   });
 }
