@@ -69,7 +69,7 @@ export default class Compteur extends Component {
             },
           },
         },
-        
+        this.titleGenerator.render()
       ],
     };
   }
