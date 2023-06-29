@@ -12,6 +12,7 @@ export default class TitleGenerator extends Component {
     }
 
     increment() {
+        console.log("okok");
         // increment the counter by 1
         this.setState({ titleNumber: this.state.titleNumber + 1 });
     }

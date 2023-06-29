@@ -20,7 +20,7 @@ class BrowserLink extends Link {
                     event.preventDefault();
                     history.pushState({}, undefined, link);
                 }
-            }
+            },
         }).render();
     }
 }

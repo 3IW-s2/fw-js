@@ -6,11 +6,6 @@ export default class Link extends Component {
     super(props);
   }
 
-  shouldUpdate(newProps) {
-    // Comparaison des nouvelles props avec les anciennes props pour déterminer si le composant doit être mis à jour
-    // Retourne true ou false en fonction du résultat
-  }
-
   render() {
     const {
       title = "Lien",
@@ -30,6 +25,7 @@ export default class Link extends Component {
         style: style,
         class: "link",
         ...this.defaultAttributes,
+        "data-active": link === window.location.pathname,
       },
       events: {
         click

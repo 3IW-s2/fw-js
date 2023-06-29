@@ -1,5 +1,5 @@
 
-import {Header} from "../components/Header.js";
+import Header from "../components/Header.js";
 import Compteur from "../components/Compteur.js";
 import Link from "../components/Link.js";
 import Title from "../components/Title.js";

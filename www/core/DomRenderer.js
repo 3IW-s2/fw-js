@@ -1,4 +1,10 @@
 export default function generateStructure(structure) {
+
+  // if(Object.getPrototypeOf(structure.constructor).name === "Component") {
+  //   structure = structure.render();
+  // }
+  // console.log(structure);;
+
   const element = document.createElement(structure.type);
   if (structure.attributes) {
     for (let attrName in structure.attributes) {
@@ -20,7 +26,6 @@ export default function generateStructure(structure) {
       element.addEventListener(eventName, structure.events[eventName].handler, structure.events[eventName].options);
     }
   }
-
   if (structure.children) {
     for (let child of structure.children) {
       let subChild;
@@ -32,6 +37,7 @@ export default function generateStructure(structure) {
       element.appendChild(subChild);
     }
   }
+
   return element;
 }
 

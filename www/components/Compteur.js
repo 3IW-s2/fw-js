@@ -8,7 +8,6 @@ export default class Compteur extends Component {
     super(props);
     this.state = { counter: startingValue };
     this.props.title = props?.title ?? "Compteur";
-
     this.titleGenerator = new TitleGenerator(null);
   }
 
@@ -69,7 +68,7 @@ export default class Compteur extends Component {
             },
           },
         },
-        this.titleGenerator.render()
+        this.titleGenerator.render(),
       ],
     };
   }

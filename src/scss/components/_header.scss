@@ -12,5 +12,9 @@
       color: white;
       text-decoration: none;
     }
+
+    .link[data-active="true"]{
+      color: #e89d27;
+    }
   }
 }

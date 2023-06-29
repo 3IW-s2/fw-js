@@ -34,8 +34,8 @@
 import Component from "./Component.js";
 
 class Button extends Component {
-  constructor(props, autoRender = true) {
-    super(props, autoRender);
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -45,7 +45,7 @@ class Button extends Component {
       style = {}
     } = this.props;
 
-    console.log(this.props);
+    // console.log(this.props);
 
     const baseStyle = {
       backgroundColor: "#515151",

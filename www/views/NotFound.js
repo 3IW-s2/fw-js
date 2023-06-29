@@ -1,4 +1,5 @@
-import {Header} from "../components/Header.js";
+import Header from "../components/Header.js";
+import BrowserLink from "../components/BrowserLink.js";
 
 export default function NotFound() {
     return {
@@ -10,7 +11,7 @@ export default function NotFound() {
                 children: [
                     {
                         type: "h1",
-                        children: ["On est ou là ? (404)"],
+                        children: ["On est où là ? (404)"],
                     },
                 ],
                 attributes: {

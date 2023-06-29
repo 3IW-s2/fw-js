@@ -1,7 +1,8 @@
 import Button from "../components/Button.js";
 import Compteur from "../components/Compteur.js";
 import Link from "../components/Link.js";
-import {Header} from "../components/Header.js";
+import Header from "../components/Header.js";
+import BrowserLink from "../components/BrowserLink.js";
 
 export default function Contact() {
   return {
@@ -17,7 +18,7 @@ export default function Contact() {
           },
           new Compteur({
             title: "Compteur page contact"
-          }, 4).render()
+          }, 4).render(),
         ],
         attributes: {
             id: "page-container",

@@ -1,32 +1,37 @@
 import DomRenderer from "../core/DomRenderer.js";
-import Link from "./Link.js";
 
-let routerBasePath;
-
-export default function BrowserRouter(routes, rootElement, baseUrl = "") {
-  routerBasePath = baseUrl;
-  let pathname = location.pathname.replace(routerBasePath, "");
-  if(!(pathname in routes)){
-    pathname = "/404";
+export default class BrowserRouter {
+  constructor(routes, rootElement, baseUrl = "") {
+    this.routes = routes;
+    this.rootElement = rootElement;
+    this.routerBasePath = baseUrl;
+    this.init();
   }
 
-  rootElement.appendChild(DomRenderer(routes[pathname]()));
-
-  const oldPushState = history.pushState;
-  history.pushState = function (data, unused, url) {
-    oldPushState.call(history, data, unused, url);
-    window.dispatchEvent(new Event("popstate"));
-  };
-
-  window.addEventListener("popstate", function () {
-    let pathname = location.pathname.replace(routerBasePath, "");
-    if(!(pathname in routes)){
+  init() {
+    let pathname = location.pathname.replace(this.routerBasePath, "");
+    if (!(pathname in this.routes)) {
       pathname = "/404";
     }
 
-    rootElement.replaceChild(
-      DomRenderer(routes[pathname]()),
-      rootElement.childNodes[0]
-    );
-  });
+    this.rootElement.appendChild(DomRenderer(this.routes[pathname]()));
+
+    const oldPushState = history.pushState;
+    history.pushState = function (data, unused, url) {
+      oldPushState.call(history, data, unused, url);
+      window.dispatchEvent(new Event("popstate"));
+    };
+
+    window.addEventListener("popstate", () => {
+      let pathname = location.pathname.replace(this.routerBasePath, "");
+      if (!(pathname in this.routes)) {
+        pathname = "/404";
+      }
+
+      this.rootElement.replaceChild(
+          DomRenderer(this.routes[pathname]()),
+          this.rootElement.childNodes[0]
+      );
+    });
+  }
 }

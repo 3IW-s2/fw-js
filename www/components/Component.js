@@ -68,6 +68,7 @@ export default class Component {
         this.oldState = this.state; // On sauvegarde l'ancien état dans oldState
         this.state = Object.assign({}, this.state, newState);
 
+        // ancien / nouveau
         if (this.shouldUpdate()) {
             this.update();
         }
