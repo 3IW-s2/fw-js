@@ -10,6 +10,12 @@ body {
   overflow-x: hidden;
 }
 
+#root{
+  display: flex;
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+
 main {
   padding: 0 20px;
 }
@@ -28,10 +34,14 @@ button{
 
 
 #page-container {
-  width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  width: 470px;
+  padding: 10px;
+  border: 1px solid #F4F4F4;
+  background: #ffffff;
+  align-self: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.06);
+  min-height: 600px;
 }
 
 @media (max-width: 768px) {
