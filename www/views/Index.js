@@ -1,42 +1,21 @@
 
 import Header from "../components/Header.js";
-import Compteur from "../components/Compteur.js";
-import Link from "../components/Link.js";
-import Title from "../components/Title.js";
-import TitleGenerator from "../components/TitleGenerator.js";
 import Button from "../components/Button.js";
+import BrowserLink from "../components/BrowserLink.js";
+import InstallerForm from "../components/InstallerForm.js";
 
-export default function Index() {
-    return {
-        type: "div",
-        children: [
-            new Header().render(),
-            {
-                type: "div",
-                children: [
-                    {
-                        type: "h1",
-                        children: ["Accueil"],
-                    },
-                    new Button({
-                        title: "Validdder",
-                        click: {
-                            handler: (event) => {
-                                alert("Vous avez cliqué sur le bouton");
-                                event.target.innerHTML = "Évènement déclenché";
-                            },
-                            options: {
-                                once: true,
-                            }
-                        },
-                        style: {}
-                    }).render(),
-                ],
-                attributes: {
-                    id: "page-container",
-                }
-            },
-        ],
-    };
+export default class Index extends InstallerForm{
 
+    constructor() {
+        super({
+            title: "Bienvenue sur l'installation WebTrunk",
+            description: "Bienvenue sur l'installation WebTrunk. Cette installation va vous guider à travers les étapes nécessaires pour installer WebTrunk sur votre serveur.",
+            linkDetails: {
+                class: "installer-button",
+                title: "Commencer l'installation",
+                link: "/db-setup",
+            }
+        });
+    }
 }
+
