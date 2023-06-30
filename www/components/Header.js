@@ -4,7 +4,6 @@ import Component from './Component.js';
 import Button from "./Button.js";
 import Link from "./Link.js";
 import BrowserLink from "./BrowserLink.js";
-import Title from "./Title.js";
 import Utils from "../core/Utils.js";
 export default class Header extends Component {
     constructor(props) {

@@ -10,11 +10,11 @@ export default class BrowserRouter {
 
   init() {
     let pathname = location.pathname.replace(this.routerBasePath, "");
-    if (!(pathname in this.routes)) {
+    if (!(Object.keys(this.routes).includes(pathname))) {
       pathname = "/404";
     }
 
-    this.rootElement.appendChild(DomRenderer(this.routes[pathname]()));
+    this.rootElement.appendChild(DomRenderer(new this.routes[pathname]().render()));
 
     const oldPushState = history.pushState;
     history.pushState = function (data, unused, url) {
@@ -24,12 +24,12 @@ export default class BrowserRouter {
 
     window.addEventListener("popstate", () => {
       let pathname = location.pathname.replace(this.routerBasePath, "");
-      if (!(pathname in this.routes)) {
+      if (!(Object.keys(this.routes).includes(pathname))) {
         pathname = "/404";
       }
 
       this.rootElement.replaceChild(
-          DomRenderer(this.routes[pathname]()),
+          DomRenderer(new this.routes[pathname]().render()),
           this.rootElement.childNodes[0]
       );
     });

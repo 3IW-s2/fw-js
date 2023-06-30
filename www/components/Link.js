@@ -23,7 +23,7 @@ export default class Link extends Component {
       attributes: {
         href: link,
         style: style,
-        class: "link",
+        class: "link" + (this.props.class ? " " + this.props.class : ""),
         ...this.defaultAttributes,
         "data-active": link === window.location.pathname,
       },
