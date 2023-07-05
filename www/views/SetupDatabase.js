@@ -56,7 +56,13 @@ export default class SetupDatabase extends InstallerForm{
                     required: true,
                 }, true),
             ],
-            linkDetails: {
+            backLink: {
+                class: "installer-button",
+                title: "Étape précédente",
+                link: "/",
+            },
+
+            nextLink: {
                 class: "installer-button",
                 title: "Étape suivante",
                 link: "/db-confirmation",

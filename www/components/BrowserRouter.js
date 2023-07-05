@@ -1,4 +1,5 @@
 import DomRenderer from "../core/DomRenderer.js";
+import StructureGenerator from "../core/DomRenderer.js";
 
 export default class BrowserRouter {
   constructor(routes, rootElement, baseUrl = "") {
@@ -14,7 +15,8 @@ export default class BrowserRouter {
       pathname = "/404";
     }
 
-    this.rootElement.appendChild(DomRenderer(new this.routes[pathname]().render()));
+    const page = new this.routes[pathname]().render();
+    this.rootElement.appendChild(new StructureGenerator(page).generate());
 
     const oldPushState = history.pushState;
     history.pushState = function (data, unused, url) {
@@ -28,8 +30,9 @@ export default class BrowserRouter {
         pathname = "/404";
       }
 
+      const page = new this.routes[pathname]().render();
       this.rootElement.replaceChild(
-          DomRenderer(new this.routes[pathname]().render()),
+          new StructureGenerator(page).generate(),
           this.rootElement.childNodes[0]
       );
     });

@@ -11,7 +11,6 @@ class BrowserLink extends Link {
             title = "Lien",
             link = {},
         } = this.props;
-        console.log(this.props);
 
         return new Link({
             class: this.props.class ?? "",

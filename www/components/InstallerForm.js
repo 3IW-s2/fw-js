@@ -8,10 +8,14 @@ export default class InstallerForm extends Component{
         this.title = props.title ?? "Formulaire";
         this.description = props.description ?? "Description";
         this.inputs = props.inputs ?? [];
-        this.linkDetails = {
-            class: props.linkDetails?.class ?? "",
-            title: props.linkDetails?.title ?? "Lien",
-            link: props.linkDetails?.link ?? null,
+
+        // backLink isn't required
+        this.backLink = props.backLink ?? null;
+
+        this.nextLink = {
+            class: props.nextLink?.class ?? "",
+            title: props.nextLink?.title ?? "Suivant",
+            link: props.nextLink?.link ?? null,
         }
     }
 
@@ -44,22 +48,47 @@ export default class InstallerForm extends Component{
                                 },
                             ]
                         },
-                        new Link({
-                            class: this.linkDetails.class,
-                            title: this.linkDetails.title,
-                            link: this.linkDetails.link,
-                            click: {
-                                handler: (event) => {
-                                    this.inputs.forEach(input => {
-                                        const inputDom = document.querySelector(`[data-identifier='${input.identifier}']`).querySelector("input");
-                                        localStorage.setItem(inputDom.name, inputDom.value);
-                                    });
+                        {
+                            type: "div",
+                            children: [
+                                this.backLink !== null ? new Link({
+                                    class: this.backLink.class,
+                                    title: this.backLink.title,
+                                    link: this.backLink.link,
+                                    click: {
+                                        handler: (event) => {
+                                            this.inputs.forEach(input => {
+                                                const inputDom = document.querySelector(`[data-identifier='${input.identifier}']`).querySelector("input");
+                                                localStorage.setItem(inputDom.name, inputDom.value);
+                                            });
 
-                                    event.preventDefault();
-                                    history.pushState({}, undefined, this.linkDetails.link);
-                                }
+                                            event.preventDefault();
+                                            history.pushState({}, undefined, this.backLink.link);
+                                        }
+                                    }
+                                }).render() : "",
+                                new Link({
+                                    class: this.nextLink.class,
+                                    title: this.nextLink.title,
+                                    link: this.nextLink.link,
+                                    click: {
+                                        handler: (event) => {
+                                            this.inputs.forEach(input => {
+                                                const inputDom = document.querySelector(`[data-identifier='${input.identifier}']`).querySelector("input");
+                                                localStorage.setItem(inputDom.name, inputDom.value);
+                                            });
+
+                                            event.preventDefault();
+                                            history.pushState({}, undefined, this.nextLink.link);
+                                        }
+                                    }
+                                }).render(),
+                            ],
+                            attributes: {
+                                class: "installer-button-container"
                             }
-                        }).render(),
+                        },
+
 
                     ],
                     attributes: {

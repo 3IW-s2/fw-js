@@ -4,13 +4,10 @@ export default class Input extends Component {
     constructor(props, checkLocalStorage = false) {
         super(props);
 
-        // If this option is true, the input will be filled with the value of the localStorage
-        // Using the name of the input as the key
         this.checkLocalStorage = checkLocalStorage;
     }
 
     render() {
-        // add properties to the input element to add label and an input field
         const {
             label = "Label",
             type = "text",
@@ -39,16 +36,11 @@ export default class Input extends Component {
                         placeholder: placeholder,
                         style: style,
                     },
-                    // events: {
-                    //     input: (event) => {
-                    //         this.props.change.handler(event);
-                    //     }
-                    // }
                 }
             ],
             attributes: {
                 ...this.defaultAttributes,
-                class: "flex-column",
+                class: "flex-column input-container",
             }
         }
     }

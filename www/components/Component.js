@@ -1,5 +1,5 @@
 import generateStructure from "../core/DomRenderer.js";
-import {generateId} from "../core/DomRenderer.js";
+import StructureGenerator from "../core/DomRenderer.js";
 export default class Component {
     constructor(props) {
         this.props = props;
@@ -47,7 +47,8 @@ export default class Component {
             ? document.activeElement
             : null;
 
-        const newDomNode = generateStructure(this.render());
+
+        const newDomNode = new StructureGenerator(this.render()).generate();
         const oldNode = document.querySelector(`[data-identifier="${this.identifier}"]`);
 
         oldNode.replaceWith(newDomNode);
